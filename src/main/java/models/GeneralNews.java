@@ -1,4 +1,4 @@
 package models;
 
-public class GeneralNews extends News {
+public class GeneralNews {
 }
