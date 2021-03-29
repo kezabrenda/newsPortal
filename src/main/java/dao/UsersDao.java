@@ -7,12 +7,12 @@ import java.util.List;
 
 public interface UsersDao {
     //create
-    void  add(Users user);
+    void  add(Users users);
 
     //read
     List<Users> getAll();
     Users findById(int id);
-    List<Departments> getAllUserDepartments(int user_id);
+    List<Departments> getAllUserDepartments(int users_id);
 
     //delete
     void deleteById(int id);
