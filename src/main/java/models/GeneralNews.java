@@ -9,15 +9,15 @@ public class GeneralNews {
     public String newsTitle;
     public String writtenBy;
     public String newsContent;
-    public int employee_id;
+    public int users_id;
     private Date date= new Date();
     private Timestamp createdat;
 
-    public GeneralNews(String newsTitle, String writtenBy, String newsContent, int employee_id) {
+    public GeneralNews(String newsTitle, String writtenBy, String newsContent, int users_id) {
         this.newsTitle = newsTitle;
         this.writtenBy = writtenBy;
         this.newsContent = newsContent;
-        this.employee_id = employee_id;
+        this.users_id = users_id;
         this.createdat = new Timestamp(date.getTime());
     }
 
@@ -53,12 +53,12 @@ public class GeneralNews {
         this.newsContent = newsContent;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
+    public int getUsers_id() {
+        return users_id;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setUsers_id(int users_id) {
+        this.users_id = users_id;
     }
 
     public Date getDate() {
@@ -83,7 +83,7 @@ public class GeneralNews {
         if (o == null || getClass() != o.getClass()) return false;
         GeneralNews that = (GeneralNews) o;
         return id == that.id &&
-                employee_id == that.employee_id &&
+                users_id == that.users_id &&
                 Objects.equals(newsTitle, that.newsTitle) &&
                 Objects.equals(writtenBy, that.writtenBy) &&
                 Objects.equals(newsContent, that.newsContent) &&
@@ -93,6 +93,6 @@ public class GeneralNews {
 
     @Override
     public int hashCode() {
-        return Objects.hash(newsTitle, writtenBy, newsContent, employee_id, date,createdat);
+        return Objects.hash(newsTitle, writtenBy, newsContent, users_id, date,createdat);
     }
 }

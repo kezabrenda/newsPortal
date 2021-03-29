@@ -7,7 +7,7 @@ public class News {
     public String newsTitle;
     public String newsContent;
     public String writtenBy;
-    public int employee_id;
+    public int users_id;
     public int department_id;
     public int id;
     public String type;
@@ -16,23 +16,23 @@ public class News {
 
     private final String TYPE_OF_NEWS="general";
 
-    public News(String newsTitle,String writtenBy, String newsContent,int employee_id) {
+    public News(String newsTitle,String writtenBy, String newsContent,int users_id) {
         this.writtenBy = writtenBy;
         this.newsTitle = newsTitle;
         this.newsContent = newsContent;
         this.type = TYPE_OF_NEWS;
-        this.employee_id = employee_id;
+        this.users_id = users_id;
         this.department_id=0;
         this.createdat = System.currentTimeMillis();
         setFormattedCreatedAt();
 
     }
-    public News(String newsTitle,String writtenBy, String newsContent,int employee_id,int department_id) {
+    public News(String newsTitle,String writtenBy, String newsContent,int users_id,int department_id) {
         this.writtenBy = writtenBy;
         this.newsTitle = newsTitle;
         this.newsContent = newsContent;
         this.type = "department";
-        this.employee_id = employee_id;
+        this.users_id = users_id;
         this.department_id=department_id;
         this.createdat = System.currentTimeMillis();
         setFormattedCreatedAt();
@@ -79,12 +79,12 @@ public class News {
         this.writtenBy = writtenBy;
     }
 
-    public int getEmployee_id() {
-        return employee_id;
+    public int getUsers_id() {
+        return users_id;
     }
 
-    public void setEmployee_id(int employee_id) {
-        this.employee_id = employee_id;
+    public void setUsers_id(int users_id) {
+        this.users_id = users_id;
     }
 
     public int getDepartment_id() {

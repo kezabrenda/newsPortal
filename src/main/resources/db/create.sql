@@ -1,5 +1,6 @@
-CREATE DATABASE newsportal;
+SET MODE PostgreSQL;
 
+CREATE DATABASE newsportal;
 \c newsportal;
 
 CREATE TABLE departments (id serial PRIMARY KEY,name VARCHAR, description VARCHAR);
