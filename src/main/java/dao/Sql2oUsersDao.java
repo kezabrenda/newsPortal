@@ -6,6 +6,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +20,14 @@ public class Sql2oUsersDao implements UsersDao {
     public void add(Users users) {
         String sql = "INSERT INTO users (name, position, role) VALUES (:name, :position, :role)";
         try (Connection con = sql2o.open()) {
+            con.getJdbcConnection().setAutoCommit(false);
             int id = (int) con.createQuery(sql, true)
                     .bind(users)
                     .executeUpdate()
                     .getKey();
+            con.commit();
             users.setId(id);
-        } catch (Sql2oException ex) {
+        } catch (Sql2oException | SQLException ex) {
             System.out.println(ex);
         }
     }
@@ -59,7 +62,6 @@ public class Sql2oUsersDao implements UsersDao {
                 departments.add(con.createQuery(usersResults)
                         .addParameter("id", id)
                         .executeAndFetchFirst(Departments.class));
-
             }
             return departments;
         }

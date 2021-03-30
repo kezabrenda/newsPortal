@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
     @Override
     public void addDepartmentNews(DepartmentNews departmentNews) {
         try(Connection con=sql2o.open()) {
-            String sql="INSERT INTO department_news  (title, writtenBy, content, createdat, users_id, departments_id) VALUES (:tittle, :writtenBy, :content, :createdat, :users_id,:departments_id)";
+            String sql="INSERT INTO department_news  (title, writtenby, content, createdat, users_id, departments_id) VALUES (:title, :writtenby, :content, :createdat, :users_id,:departments_id)";
             int id= (int) con.createQuery(sql,true)
                     .bind(departmentNews)
                     .executeUpdate()
@@ -134,13 +135,15 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
     @Override
     public void clearAll() {
         try (Connection con=sql2o.open()){
+            con.getJdbcConnection().setAutoCommit(false);
             String sql="DELETE FROM departments";
             String sqlNews="DELETE FROM department_news";
             String sqlUsersDepartments="DELETE FROM users_departments";
             con.createQuery(sql).executeUpdate();
             con.createQuery(sqlUsersDepartments).executeUpdate();
             con.createQuery(sqlNews).executeUpdate();
-        }catch (Sql2oException e){
+            con.commit();
+        }catch (Sql2oException | SQLException e){
             System.out.println(e);
         }
     }

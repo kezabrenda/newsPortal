@@ -7,6 +7,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,16 +19,17 @@ public class Sql2oDepartmentsDao implements DepartmentsDao {
     }
 
     @Override
-    public void add(Departments departments) {
+    public void addDepartments(Departments departments) {
         try(Connection con=sql2o.open()) {
+            con.getJdbcConnection().setAutoCommit(false);
             String sql="INSERT INTO departments (name,description,size) VALUES (:name,:description,:size)";
             int id=(int) con.createQuery(sql,true)
                     .bind(departments)
                     .executeUpdate()
                     .getKey();
+            con.commit();
             departments.setId(id);
-
-        }catch (Sql2oException e){
+        }catch (Sql2oException | SQLException e){
             System.out.println(e);
         }
     }

@@ -7,6 +7,8 @@ CREATE TABLE departments (id serial PRIMARY KEY,name VARCHAR, description VARCHA
 
 CREATE TABLE users(id serial PRIMARY KEY,name VARCHAR, position VARCHAR, role VARCHAR,departments_id INTEGER);
 
+CREATE TABLE news (id serial PRIMARY KEY, title VARCHAR, writtenby VARCHAR, content VARCHAR, type VARCHAR, users_id INTEGER, departments_id INTEGER, createdat timestamp);
+
 CREATE TABLE users_departments(id serial PRIMARY KEY,users_id INTEGER, departments_id INTEGER);
 
 CREATE TABLE general_news(id serial PRIMARY KEY,title VARCHAR, writtenby VARCHAR, content VARCHAR,createdat timestamp, users_id INTEGER);
@@ -18,3 +20,5 @@ CREATE TABLE departments_news(id serial PRIMARY KEY,title VARCHAR, writtenby VAR
 CREATE TABLE users_departmentnews(id serial PRIMARY KEY, users_id INTEGER,departmentnews_id INTEGER);
 
 CREATE TABLE departments_departmentnews(id serial PRIMARY KEY, departments_id INTEGER,departmentnews_id INTEGER);
+
+CREATE DATABASE newsportal_test WITH TEMPLATE newsportal;

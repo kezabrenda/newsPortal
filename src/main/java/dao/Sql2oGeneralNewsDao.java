@@ -17,7 +17,7 @@ public class Sql2oGeneralNewsDao implements GeneralNewsDao {
 
     @Override
     public void addGeneralNews(GeneralNews generalnews) {
-        String sql = "INSERT INTO general_news (title, writtenBy, content, createdat, users_id) VALUES (:tittle, :writtenBy, :content, :createdat, :users_id)";
+        String sql = "INSERT INTO general_news (title, writtenby, content, createdat, users_id) VALUES (:title, :writtenby, :content, :createdat, :users_id)";
         try (Connection con = sql2o.open()) {
             int id = (int) con.createQuery(sql, true)
                     .bind(generalnews)
@@ -53,7 +53,7 @@ public class Sql2oGeneralNewsDao implements GeneralNewsDao {
 
     @Override
     public List<GeneralNews> getAllGeneralNewsByUser(int users_id) {
-        List<GeneralNews> generalNews = new ArrayList();
+        List<GeneralNews> generalNews = new ArrayList<>();
         String joinQuery = "SELECT generalnews_id FROM users_generalnews WHERE users_id = :users_id";
 
         try (Connection con = sql2o.open()) {
