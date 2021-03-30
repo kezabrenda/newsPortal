@@ -61,16 +61,6 @@ public class Sql2oDepartmentNewsDaoTest {
         assertEquals(departmentNews.getDepartment_id(),newsDao.findById(departmentNews.getId()).getDepartment_id());
     }
 
-
-
-    @Test
-    public void addUsersToDepartmentNews() {
-    }
-
-    @Test
-    public void addDepartmentToDepartmentNews() {
-    }
-
     @Test
     public void getAll() {
         Users users=setUpNewUsers();
@@ -83,33 +73,6 @@ public class Sql2oDepartmentNewsDaoTest {
         newsDao.addNews(news);
         assertEquals(2,newsDao.getAll().size());
     }
-
-    private DepartmentNews setupDepartmentNews() {
-        DepartmentNews DepartmentNews = new DepartmentNews("Work Life", "Brenda", "Enjoyyyyy", 1,1);
-        departmentNewsDao.addDepartmentNews(DepartmentNews);
-        return DepartmentNews;
-    }
-
-    @Test
-    public void getAllDepartmentNewsByDepartment() {
-    }
-
-    @Test
-    public void getAllDepartmentNewsByUsers() {
-    }
-
-    @Test
-    public void findById() {
-    }
-
-    @Test
-    public void deleteById() {
-    }
-
-    @Test
-    public void clearAll() {
-    }
-
 
     private Departments setUpDepartments() {
         return new Departments("HR","deals with employees");

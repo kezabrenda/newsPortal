@@ -6,10 +6,11 @@ import org.sql2o.Sql2o;
 
 import static org.junit.Assert.*;
 
-public class Sql2oGeneralNewsDaoTest {
+public class Sql2oUsersDaoTest {
     private static Connection conn;
     private static Sql2oDepartmentsDao departmentsDao;
     private static Sql2oUsersDao usersDao;
+    private static Sql2oNewsDao newsDao;
     private static Sql2oGeneralNewsDao generalNewsDao;
     private static Sql2oDepartmentNewsDao departmentNewsDao;
 

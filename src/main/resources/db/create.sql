@@ -3,11 +3,11 @@ SET MODE PostgreSQL;
 CREATE DATABASE newsportal;
 \c newsportal;
 
-CREATE TABLE departments (id serial PRIMARY KEY,name VARCHAR, description VARCHAR);
+CREATE TABLE departments(id serial PRIMARY KEY, name VARCHAR, description VARCHAR);
 
 CREATE TABLE users(id serial PRIMARY KEY,name VARCHAR, position VARCHAR, role VARCHAR,departments_id INTEGER);
 
-CREATE TABLE news (id serial PRIMARY KEY, title VARCHAR, writtenby VARCHAR, content VARCHAR, type VARCHAR, users_id INTEGER, departments_id INTEGER, createdat timestamp);
+CREATE TABLE news(id serial PRIMARY KEY, title VARCHAR, writtenby VARCHAR, content VARCHAR, type VARCHAR, users_id INTEGER, departments_id INTEGER, createdat timestamp);
 
 CREATE TABLE users_departments(id serial PRIMARY KEY,users_id INTEGER, departments_id INTEGER);
 
