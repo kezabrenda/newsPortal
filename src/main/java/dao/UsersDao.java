@@ -4,6 +4,7 @@ import models.Departments;
 import models.Users;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UsersDao {
     //create
@@ -17,4 +18,5 @@ public interface UsersDao {
     //delete
     void deleteById(int id);
     void clearAll();
+
 }

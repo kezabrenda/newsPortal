@@ -1,0 +1,38 @@
+{{#partial "content"}}
+
+    <div class="container">
+        <div>
+            <div class="col-md-9" id="header2">
+                <div>
+                    {{#if departmentNews}}
+                        {{#each departmentNews as |e|}}
+                            <div class="col-md-4">
+                                <div class="text">
+                                    <p class="text" id={{e.id}}>{{e.title}}</p><br>
+                                    <p class="text" id={{e.id}}>{{e.writtenby}}</p><br>
+                                    <p class="text" id={{e.id}}>{{e.content}}</p><br>
+                                </div>
+                                <br>
+                            </div>
+                        {{/each}}
+                        <h3>users</h3>
+                        <hr>
+                        {{#each users as |a|}}
+                            <h3>{{a}}</h3>
+                        {{/each}}
+                        <h3>Department</h3>
+                        <hr>
+                        {{#each departments as |a|}}
+                            <h3>{{a}}</h3>
+                        {{/each}}
+
+                    {{else}}
+                        <p class="text s-title">Add news <a href="/create/departmentNews/new">here</a></p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}

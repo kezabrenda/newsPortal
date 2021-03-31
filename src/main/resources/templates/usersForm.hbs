@@ -1,0 +1,42 @@
+{{#partial "content"}}
+    <div class="form">
+        <form action="/create/users/new" method="post">
+            <h1>Create User</h1>
+            <hr>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control form-control-lg" name="name" placeholder="Input Name..." required>
+            </div>
+            <div class="form-group">
+                <label for="position">Position</label>
+                <input type="text" class="form-control form-control-lg" name="position" placeholder="Input position...."required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" class="form-control form-control-lg" name="role" placeholder="Input your role ..."
+                       required>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="department">Department</label>
+                    </div>
+                    <select class="custom-select" id="department" name="department">
+                        <option selected>Choose...</option>
+                        {{#if departments}}
+                            {{#each departments as |l|}}
+                                <option name="department" value={{l.id}}>{{l.name}}</option>
+                            {{/each}}
+                        {{/if}}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success"> Create </button>
+            </div>
+        </form>
+    </div>
+
+{{/partial}}
+
+{{> layout.hbs}}

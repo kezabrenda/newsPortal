@@ -17,11 +17,10 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
         this.sql2o = sql2o;
     }
 
-
     @Override
     public void addDepartmentNews(DepartmentNews departmentNews) {
         try(Connection con=sql2o.open()) {
-            String sql="INSERT INTO department_news  (title, writtenby, content, createdat, users_id, departments_id) VALUES (:title, :writtenby, :content, :createdat, :users_id,:departments_id)";
+            String sql="INSERT INTO departments_news  (title, writtenby, content, createdat, users_id, departments_id) VALUES (:title, :writtenby, :content, :createdat, :users_id,:departments_id)";
             int id= (int) con.createQuery(sql,true)
                     .bind(departmentNews)
                     .executeUpdate()
@@ -61,7 +60,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
     @Override
     public List<DepartmentNews> getAll() {
         try(Connection con=sql2o.open()) {
-            String sql="SELECT * FROM department_news";
+            String sql="SELECT * FROM departments_news";
             return con.createQuery(sql,true)
                     .executeAndFetch(DepartmentNews.class);
         }
@@ -76,7 +75,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
                     .addParameter("departments_id", departments_id)
                     .executeAndFetch(Integer.class);
             for (Integer DepartmentNewsId : allDepartmentNewsIds){
-                String departmentNewsQuery = "SELECT * FROM departmentnews WHERE id = :departmentnews_id";
+                String departmentNewsQuery = "SELECT * FROM department_news WHERE id = :departmentnews_id";
                 departmentNews.add(
                         con.createQuery(departmentNewsQuery)
                                 .addParameter("departmentnews_id", DepartmentNewsId)
@@ -113,7 +112,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
     @Override
     public DepartmentNews findById(int id) {
         try(Connection con=sql2o.open()) {
-            String sql="SELECT * FROM department_news WHERE id=:id";
+            String sql="SELECT * FROM departments_news WHERE id=:id";
             return con.createQuery(sql)
                     .addParameter("id",id)
                     .executeAndFetchFirst(DepartmentNews.class);
@@ -122,7 +121,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
 
     @Override
     public void deleteById(int id) {
-        String sql = "DELETE from department_news WHERE id=:id";
+        String sql = "DELETE from departments_news WHERE id=:id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
@@ -137,7 +136,7 @@ public class Sql2oDepartmentNewsDao implements DepartmentsNewsDao{
         try (Connection con=sql2o.open()){
             con.getJdbcConnection().setAutoCommit(false);
             String sql="DELETE FROM departments";
-            String sqlNews="DELETE FROM department_news";
+            String sqlNews="DELETE FROM departments_news";
             String sqlUsersDepartments="DELETE FROM users_departments";
             con.createQuery(sql).executeUpdate();
             con.createQuery(sqlUsersDepartments).executeUpdate();

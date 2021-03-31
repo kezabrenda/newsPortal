@@ -1,0 +1,40 @@
+{{#partial "content"}}
+
+    <div class="container">
+        <div>
+            <div class="col-md-12" id="header2">
+                <ul>
+                    <li> <a href="/users/new">Create User</a></li>
+                    <li><a href="/departments/new">Create Departments</a></li>
+                    <li><a href="/generalNews/new">Create the General news</a></li>
+                    <li> <a href="/departmentNews/new">Create the Department news</a></li>
+                    <li><a href="/users">View Users</a></li>
+                    <li><a href="/departments">View Departments</a></li>
+                    <li><a href="/generalNews">View the General news</a></li>
+                    <li><a href="/departmentNews">View the Department news</a></li>
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <div>
+                    {{#if departments}}
+                        <div>
+                            {{#each departments as |d| }}
+                                <div class="col-md-4" >
+                                    <div>
+                                        <p id={{d.id}}>{{d.name}}</p><br>
+                                        <p id={{d.id}}>{{d.description}}</p><br>
+                                    </div>
+                                    <br>
+                                </div>
+                            {{/each}}
+                        </div>
+                    {{else}}
+                        <p class="text">There are no department, register here <a href="/departments/new">here</a></p>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}
